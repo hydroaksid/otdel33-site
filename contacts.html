@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Контакты — otdel33</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+</head>
+<body class="project-dark-bg">
+  <div id="header-placeholder"></div>
+  <main>
+    <div class="contacts-outer">
+      <div class="contacts-grid">
+        <div class="contacts-left">
+          <div class="contacts-text">
+            Напишите нам, мы что-нибудь для вас придумаем
+          </div>
+        </div>
+        <div class="contacts-right">
+          <div class="contacts-contacts-large">
+            <div class="contacts-email">hello@otdel33.com</div>
+            <div class="contacts-socials">
+              <div>[instagram]</div>
+              <div>[telegram]</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script>
+    fetch('header.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('header-placeholder').outerHTML = html;
+      });
+  </script>
+</body>
+</html> 

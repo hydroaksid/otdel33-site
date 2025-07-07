@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title id="project-title">Проект — otdel33</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="projects.js"></script>
+  <script src="project.js"></script>
+  <script src="script.js"></script>
+</head>
+<body class="project-dark-bg">
+  <div id="header-placeholder"></div>
+  <main>
+    <div class="project-inner">
+      <section class="project-hero">
+        <div class="project-header">
+          <div class="project-title-block">
+            <h1 id="project-title-h1"></h1>
+            <div id="project-description" class="project-description"></div>
+          </div>
+          <div id="project-tags" class="project-tags"></div>
+        </div>
+        <div class="project-authors-wrapper">
+          <div id="project-authors-section" class="project-authors-section"></div>
+        </div>
+        <div class="project-video-block">
+          <video id="main-video" controls loop autoplay muted poster="" width="100%">
+            <source id="main-video-source" src="" type="video/mp4">
+            Ваш браузер не поддерживает видео.
+          </video>
+        </div>
+      </section>
+      <!-- Здесь можно добавить галерею, детали и т.д. -->
+    </div>
+    <div id="project-gallery"></div>
+  </main>
+  <div id="footer-placeholder"></div>
+  <script>
+    fetch('header.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('header-placeholder').outerHTML = html;
+        if (typeof checkHeaderVisibility === 'function') checkHeaderVisibility();
+        fetch('footer.html')
+          .then(res => res.text())
+          .then(footerHtml => {
+            document.getElementById('footer-placeholder').outerHTML = footerHtml;
+          });
+      });
+  </script>
+</body>
+</html>

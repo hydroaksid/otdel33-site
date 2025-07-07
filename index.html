@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>otdel33 — design, cg & vfx</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <video autoplay muted loop playsinline id="bg-video">
+    <source src="assets/video/background.mp4" type="video/mp4">
+    Ваш браузер не поддерживает видео.
+  </video>
+  <div class="overlay">
+    <div class="center-block" onclick="scrollToProjects()">
+      <img src="assets/img/logo.png" alt="otdel33 logo" class="center-logo">
+      <div class="subtitle right-bottom">design, cg & vfx</div>
+    </div>
+    <button class="scroll-btn" onclick="scrollToProjects()">[проекты]</button>
+  </div>
+
+  <div id="projects-section" class="projects-section">
+    <div id="header-placeholder"></div>
+    <div class="filters"></div>
+    <div class="gallery"></div>
+  </div>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="projects.js"></script>
+  <script src="script.js"></script>
+  <script>
+    function scrollToProjects() {
+      document.getElementById('projects-section').scrollIntoView({ behavior: 'smooth' });
+    }
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    window.addEventListener('wheel', function(e) {
+      if (window.scrollY < 10 && e.deltaY > 0) scrollToProjects();
+    }, { once: false });
+
+    // Показ/скрытие светлой полосы при скролле к разделу проекты
+    function checkHeaderVisibility() {
+      const projects = document.getElementById('projects-section');
+      const header = projects.querySelector('.header');
+      const rect = projects.getBoundingClientRect();
+      if (rect.top <= 54 && rect.bottom > 54) {
+        header.classList.add('header-visible');
+      } else {
+        header.classList.remove('header-visible');
+      }
+    }
+    window.addEventListener('scroll', checkHeaderVisibility);
+    window.addEventListener('resize', checkHeaderVisibility);
+    document.addEventListener('DOMContentLoaded', checkHeaderVisibility);
+
+    // Вставка общего header
+    fetch('header.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('header-placeholder').outerHTML = html;
+        const header = document.querySelector('.header');
+        if (header) header.classList.add('header-animated');
+        if (typeof checkHeaderVisibility === 'function') checkHeaderVisibility();
+        // После вставки header вставляем футер
+        fetch('footer.html')
+          .then(res => res.text())
+          .then(footerHtml => {
+            document.getElementById('footer-placeholder').outerHTML = footerHtml;
+          });
+      });
+  </script>
+</body>
+</html>
