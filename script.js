@@ -234,3 +234,15 @@ function goToProjects() {
     window.location.href = 'index.html#projects-section';
   }
 }
+
+function goToIntro() {
+  if (
+    window.location.pathname.endsWith('index.html') ||
+    window.location.pathname === '/' ||
+    window.location.pathname === ''
+  ) {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else {
+    window.location.href = 'index.html';
+  }
+}
